@@ -29,3 +29,9 @@ You should now be able to run tests:
 ```
 docker-compose run web rspec spec/
 ```
+
+# Tests
+I wanted to do TDD as much as possible. 
+
+To begin, I began by refactoring some of the existing specs: 
++ Convert controller specs to request specs (https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11)
