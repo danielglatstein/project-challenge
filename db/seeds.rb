@@ -6,6 +6,29 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+users = [
+  {
+    name: "Wade Boggs",
+    email: "wade@gmail.com"
+  },
+  {
+    name: "Ken Griffey Jr.",
+    email: "griffey@gmail.com"
+  },
+  {
+    name: "Adrian Beltre",
+    email: "yoadrian@gmail.com"
+  },
+  {
+    name: "Rod Beck",
+    email: "beck@gmail.com"
+  },
+  {
+    name: "Kevin Brown",
+    email: "brownie@gmail.com"
+  }
+]
+
 dogs = [
   {
     name: 'Bowie',
@@ -49,8 +72,19 @@ dogs = [
   },
 ]
 
+users.each do |u| 
+  u = User.find_or_initialize_by(
+    name: u[:name], 
+    email: u[:email]
+  )
+  u.password = "123456"
+  u.password_confirmation = "123456"
+  u.save
+end
+
 dogs.each do |dog|
   dog = Dog.find_or_create_by(name: dog[:name], description: dog[:description])
+  dog.update(user: User.all.sample)
   directory_name = File.join(Rails.root, 'db', 'seed', "#{dog[:name].downcase}", "*")
 
   Dir.glob(directory_name).each do |filename|
