@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'As a user', type: :feature do
+  before do
+    sign_in create(:user)
+  end
+  
   it 'I can create a profile' do
     visit new_dog_path
 

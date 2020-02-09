@@ -6,8 +6,12 @@
   <% end %>
 
   <p><%= @dog.description %></p>
-
-  <%= link_to "Edit #{@dog.name}'s Profile", edit_dog_path %>
+  
+  <% if policy(@dog).edit? %>
+    <%= link_to "Edit #{@dog.name}'s Profile", edit_dog_path %>
+  <% end %>
   <br>
-  <%= link_to "Delete #{@dog.name}'s Profile", dog_path, method: :delete %>
+  <% if policy(@dog).destroy? %>
+    <%= link_to "Delete #{@dog.name}'s Profile", dog_path, method: :delete %>
+  <% end %> 
 </section>

@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 RSpec.describe DogsController, type: :request do
+  let(:user) { create(:user) }
+  
+  before do
+    sign_in user 
+  end
+
   describe "#new" do
     it 'returns 200 response' do
       get new_dog_path
@@ -11,7 +17,7 @@ RSpec.describe DogsController, type: :request do
 
   describe "#create" do
     let(:params) do
-      { dog: { name: "Bowser", description: "A hunky husky" } }
+      { dog: { name: "Bowser", description: "A hunky husky", user_id: user.id } }
     end
 
     context "valid record" do
@@ -40,7 +46,7 @@ RSpec.describe DogsController, type: :request do
   end
 
   describe "#update" do
-    let!(:rusty) { create(:dog, name: "Rusty") }
+    let!(:rusty) { create(:dog, name: "Rusty", owner: user) }
     let(:params) do
       { dog: { name: "Bowser" } }
     end
@@ -70,8 +76,8 @@ RSpec.describe DogsController, type: :request do
   end
 
   describe '#index' do
-    let!(:rusty) { create(:dog) }
-    let!(:trixie) { create(:dog) }
+    let!(:rusty) { create(:dog, owner: user) }
+    let!(:trixie) { create(:dog, owner: user) }
     
     it 'displays recent dogs' do
       get dogs_path
@@ -83,7 +89,7 @@ RSpec.describe DogsController, type: :request do
   end
 
   describe '#show' do
-    let!(:rusty) { create(:dog) }
+    let!(:rusty) { create(:dog, owner: user) }
     
     it 'displays recent dogs' do
       expect(
@@ -93,7 +99,7 @@ RSpec.describe DogsController, type: :request do
   end
 
   describe '#edit' do
-    let!(:rusty) { create(:dog) }
+    let!(:rusty) { create(:dog, owner: user) }
     
     it 'displays recent dogs' do
       get edit_dog_path(rusty.id)
@@ -105,7 +111,7 @@ RSpec.describe DogsController, type: :request do
   end
 
   describe '#destroy' do
-    let!(:rusty) { create(:dog) }
+    let!(:rusty) { create(:dog, owner: user) }
     
     it 'displays recent dogs' do
       expect { delete dog_path(rusty.id) }.to change {
