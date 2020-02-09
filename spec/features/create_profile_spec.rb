@@ -9,7 +9,7 @@ describe 'As a user', type: :feature do
     attach_file 'Image', 'spec/fixtures/images/speck.jpg'
     click_button 'Create Dog'
 
-    expect(page).to have_content("Dog was successfully created")
+    expect(page).to have_content("Speck's profile was successfully created")
     expect(page).to have_content("Edit Speck's Profile")
   end
 end
