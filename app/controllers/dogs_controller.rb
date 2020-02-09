@@ -4,7 +4,7 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.all
+    @dogs = Dog.page(page_param)
   end
 
   # GET /dogs/1
@@ -70,6 +70,11 @@ class DogsController < ApplicationController
   # Use callbacks to share common setup or constraints between actions.
   def set_dog
     @dog = Dog.find(params[:id])
+  end
+
+  def page_param
+    permitted_params = params.permit!
+    permitted_params[:page]
   end
 
   # Never trust parameters from the scary internet, only allow the white list through.

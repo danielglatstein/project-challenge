@@ -25,6 +25,11 @@ Then run
 docker-compose run web rake db:migrate
 ```
 
+Then run 
+```
+docker-compose run web rake db:seed
+```
+
 You should now be able to run tests: 
 ```
 docker-compose run web rspec spec/
