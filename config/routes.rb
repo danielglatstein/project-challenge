@@ -3,4 +3,5 @@ Rails.application.routes.draw do
   devise_for :users
   resources :dogs
   root to: "dogs#index"
+  resource :dog_likes, only: [:create, :destroy], controller: 'dog_likes'
 end

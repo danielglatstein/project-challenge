@@ -1,6 +1,16 @@
-<a href="<%= url_for(dog) %>">
-  <article>
-    <h2 class="dog-name"><%= dog.name %></h2>
-    <%= image_tag url_for(dog.images.first), class: "dog-photo", alt: "Photo of #{dog.name}" %>
-  </article>
-</a>
+<div>
+  <a href="<%= url_for(dog) %>">
+    <span class="dog-name"><%= dog.name %></span>
+    <div class="gallery-item" tabindex="0">
+      <%= image_tag url_for(dog.images.first), class: "dog-photo", alt: "Photo of #{dog.name}" %>
+      <div class="gallery-item-info">
+        <ul>
+          <li class="gallery-item-likes">Likes: <%= dog.likes.count %></li>
+        </ul>
+      </div>
+    </div>
+  </a>
+  <% if policy(dog).like? %>
+    <div><%= render partial: 'like_dog', locals: { dog: dog} %></div>
+  <% end %>
+</div>

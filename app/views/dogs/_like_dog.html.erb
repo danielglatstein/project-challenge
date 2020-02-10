@@ -1,0 +1,5 @@
+<% if dog.likes.map(&:user_id).include? current_user.id %>
+  <%= link_to "Unlike", dog_likes_path(dog_id: dog.id), method: :delete %>
+<% else %>
+  <%= link_to "Like", dog_likes_path(dog_id: dog.id), method: :post %>
+<% end %>

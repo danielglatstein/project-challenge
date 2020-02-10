@@ -18,4 +18,9 @@ class DogPolicy
 
   alias_method :update?, :edit?
   alias_method :destroy?, :edit?
+
+  def like?
+    user.present? && 
+      dog.owner != user
+  end
 end

@@ -23,4 +23,20 @@ describe DogPolicy do
       expect(subject).to permit(user, Dog.new)
     end
   end
+
+  permissions :like? do
+    it "denies access if no current user" do
+      expect(subject).not_to permit(nil, Dog.new)
+    end
+
+    context "current user" do
+      it "denies access if user is dogs owner" do
+        expect(subject).to permit(user, Dog.new)
+      end
+
+      it "grants access if current user is not dogs owner" do
+        expect(subject).to permit(create(:user), Dog.new)
+      end
+    end
+  end
 end

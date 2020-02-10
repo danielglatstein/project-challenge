@@ -1,3 +1,13 @@
-<%= paginate @dogs %>
+<header>
+	<div class="container">
+    <%= paginate @dogs %>
+	</div>
+</header>
 
-<%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
+<main>
+	<div class="container">
+		<div class="gallery">
+      <%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
+		</div>
+	</div>
+</main>

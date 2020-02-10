@@ -75,7 +75,7 @@ class DogsController < ApplicationController
   end
 
   private
-  # Use callbacks to share common setup or constraints between actions.
+
   def set_dog
     @dog = Dog.find(params[:id])
   end
@@ -85,7 +85,6 @@ class DogsController < ApplicationController
     permitted_params[:page]
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def dog_params
     params.require(:dog).permit(:name, :description, :images, :user_id)
   end
