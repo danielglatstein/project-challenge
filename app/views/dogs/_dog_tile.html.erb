@@ -1,6 +1,8 @@
 <div class="gallery-container" >
   <h1 class="profile-user-name dog-name"><%= dog.name %></h1>
-  <a><button class="btn profile-edit-btn">Edit Profile</button></a>
+  <a href="<%= url_for(dog) %>">
+    <button class="btn profile-edit-btn">Edit Profile</button>
+  </a>
   <% if policy(dog).like? %>
     <div><%= render partial: 'like_dog', locals: { dog: dog} %></div>
   <% end %>

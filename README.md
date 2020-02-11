@@ -50,3 +50,4 @@ To begin, I began by refactoring some of the existing specs:
 + Build out React front-end client
 + Build out Dog Serializer and clean up the view
 + Add more testing around the sorting to the request spec
++ Style the show page
