@@ -41,3 +41,12 @@ I wanted to do TDD as much as possible.
 To begin, I began by refactoring some of the existing specs: 
 + Convert controller specs to request specs (https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11)
 + I also updated the feature specs to not check the database. I think it is ok to look into database for something like a unit, or request specs. However, I beleive feature/integration specs should assert against what the user sees.
++ As I began adding features, I tried to add integration, request, and unit testing where appropriate. 
++ TDD was particularly helpful for the `Sort by Likes in Past Hour` task, which was a good challenge to have the scope return records that didn't have likes in past hour. 
+
+# If I had More Time
++ Add more testing around the DogLikesController
++ Capybara + Selenium Chrome Driver work in Docker container
++ Build out React front-end client
++ Build out Dog Serializer and clean up the view
++ Add more testing around the sorting to the request spec
