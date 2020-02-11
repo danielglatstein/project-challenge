@@ -44,11 +44,11 @@ ActiveRecord::Schema.define(version: 2020_02_10_232714) do
   end
 
   create_table "likes", force: :cascade do |t|
-    t.integer "dog_id"
-    t.integer "user_id"
+    t.integer "dog_id", null: false
+    t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["dog_id", "user_id"], name: "index_likes_on_dog_id_and_user_id"
+    t.index ["dog_id", "user_id"], name: "index_likes_on_dog_id_and_user_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|

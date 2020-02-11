@@ -6,19 +6,21 @@ RSpec.describe Dog, type: :model do
   context ".sorted_by_likes_in_past_hour" do
     let!(:dog_with_most_likes) do
       create(:dog, owner: create(:user)).tap do |dog|
-        create_list(:like, 10, dog: dog)
+        5.times { create(:like, dog: dog, user: create(:user)) }
       end
     end
 
     let!(:yesterdays_news) do
       create(:dog, owner: create(:user)).tap do |dog|
-        create_list(:like, 20, dog: dog, created_at: 1.day.ago)
+        15.times do 
+          create(:like, dog: dog, user: create(:user), created_at: 1.day.ago)
+        end
       end
     end
 
     let!(:liked_dog) do 
       create(:dog, owner: create(:user)).tap do |dog|
-        create(:like, dog: dog)
+        create(:like, dog: dog, user: create(:user))
       end
     end
 
