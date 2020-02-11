@@ -5,7 +5,14 @@ class DogsController < ApplicationController
   # GET /dogs
   # GET /dogs.json
   def index
-    @dogs = Dog.includes(:owner).page(page_param)
+    @sorted_by_likes = sort_by_likes?
+    @dogs = begin
+      if sort_by_likes?
+        Dog.includes(:owner).page(page_param).sorted_by_likes_in_past_hour
+      else
+        Dog.includes(:owner).page(page_param)
+      end
+    end
   end
 
   # GET /dogs/1
@@ -78,6 +85,10 @@ class DogsController < ApplicationController
 
   def set_dog
     @dog = Dog.find(params[:id])
+  end
+
+  def sort_by_likes?
+    params[:sort] == "likes"
   end
 
   def page_param
