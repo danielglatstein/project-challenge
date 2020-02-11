@@ -1,16 +1,19 @@
-<div>
-  <a href="<%= url_for(dog) %>">
-    <span class="dog-name"><%= dog.name %></span>
-    <div class="gallery-item" tabindex="0">
-      <%= image_tag url_for(dog.images.first), class: "dog-photo", alt: "Photo of #{dog.name}" %>
-      <div class="gallery-item-info">
-        <ul>
-          <li class="gallery-item-likes">Likes: <%= dog.likes.count %></li>
-        </ul>
-      </div>
-    </div>
-  </a>
+<div class="gallery-container" >
+  <h1 class="profile-user-name dog-name"><%= dog.name %></h1>
+  <a><button class="btn profile-edit-btn">Edit Profile</button></a>
   <% if policy(dog).like? %>
     <div><%= render partial: 'like_dog', locals: { dog: dog} %></div>
   <% end %>
 </div>
+
+<div class="gallery-item" tabindex="0">
+  <%= image_tag url_for(dog.images.sample), class: "dog-photo", alt: "Photo of #{dog.name}" %>
+  <div class="gallery-item-info">
+    <ul>
+      <li class="gallery-item-likes">
+        <%= pluralize(dog.likes.count, 'like') %>
+      </li>
+    </ul>
+  </div>
+</div>
+

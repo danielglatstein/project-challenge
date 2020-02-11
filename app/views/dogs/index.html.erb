@@ -1,20 +1,18 @@
 <header>
 	<div class="container">
-    <%= paginate @dogs %>
-	</div>
-	<div>
-		<% if @sorted_by_likes %>
-			<%= link_to 'Sort by Date Created', dogs_path, method: :get %>
-		<% else %>
-			<%= link_to 'Sort by Likes in Last Hour', dogs_path(sort: "likes"), method: :get %>
-		<% end %>
+		<%= paginate @dogs %>
+		<div class="sort-by">
+			<% if @sorted_by_likes %>
+				<%= link_to 'Sort by Date Created', dogs_path, method: :get %>
+			<% else %>
+				<%= link_to 'Sort by Likes in Last Hour', dogs_path(sort: "likes"), method: :get %>
+			<% end %>
+		</div>
 	</div>
 </header>
 
 <main>
 	<div class="container">
-		<div class="gallery">
-      <%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
-		</div>
+		<%= render partial: 'thumbnail', collection: @dogs, as: :dog %>
 	</div>
 </main>

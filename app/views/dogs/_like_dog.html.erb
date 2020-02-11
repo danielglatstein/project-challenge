@@ -1,5 +1,9 @@
 <% if dog.likes.map(&:user_id).include? current_user.id %>
-  <%= link_to "Unlike", dog_likes_path(dog_id: dog.id), method: :delete %>
+  <button class="btn profile-edit-btn">
+    <%= link_to "Unlike", dog_likes_path(dog_id: dog.id), method: :delete %>
+  </button>
 <% else %>
-  <%= link_to "Like", dog_likes_path(dog_id: dog.id), method: :post %>
+  <button class="btn profile-edit-btn">
+    <%= link_to "Like", dog_likes_path(dog_id: dog.id), method: :post %>
+  </button>
 <% end %>

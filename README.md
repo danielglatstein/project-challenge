@@ -40,4 +40,4 @@ I wanted to do TDD as much as possible.
 
 To begin, I began by refactoring some of the existing specs: 
 + Convert controller specs to request specs (https://medium.com/just-tech/rspec-controller-or-request-specs-d93ef563ef11)
-+ I also updated the feature specs to nto check the database. I think it is ok to look into database for something like a unit, or request specs. However, I beleive feature/integration specs should assert against what the user sees.
++ I also updated the feature specs to not check the database. I think it is ok to look into database for something like a unit, or request specs. However, I beleive feature/integration specs should assert against what the user sees.
