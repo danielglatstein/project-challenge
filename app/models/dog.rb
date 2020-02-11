@@ -9,6 +9,6 @@ class Dog < ApplicationRecord
   scope :sorted_by_likes_in_past_hour , -> do
     joins("LEFT OUTER JOIN likes ON likes.dog_id = dogs.id AND likes.created_at >= datetime('now', '-1 Hour')")
       .group(:id)
-      .order('COUNT(likes.id) DESC')
+      .order(Arel.sql('COUNT(likes.id) DESC'))
   end
 end

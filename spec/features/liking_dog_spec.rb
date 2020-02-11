@@ -10,8 +10,8 @@ describe 'As a user', type: :feature do
     visit dogs_path
 
     click_link("Like")
-    expect(page).to have_content("Likes: 1")
+    expect(page).to have_content("1 like")
     click_link("Unlike")
-    expect(page).to have_content("Likes: 0")
+    expect(page).to have_content("0 likes")
   end
 end
